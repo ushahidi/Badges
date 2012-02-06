@@ -127,7 +127,6 @@
 									pack["done"] = false;
 									packs.push(pack);
 									$("div#packs").append("<div id=\"pack-" + pack.path + "\" class=\"pack\"><h2><a href=\"https://github.com/ushahidi/Badges/tree/master/" + pack.path + "\">" + pack.path + " Pack</a></h2></div>");
-									console.log(pack);
 								}
 							}
 						}
@@ -140,7 +139,6 @@
 				if(typeof packs[index] == "undefined") return;
 				pack = packs[index];
 				pack["dom"] = $("div#pack-" + pack.path);
-				//$("div#pack-" + pack.path).css("background", "red");
 
 				$.getJSON(
 					"https://api.github.com/repos/ushahidi/Badges/git/trees/" + pack.sha + "?callback=?",
