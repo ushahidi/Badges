@@ -11,8 +11,6 @@
 
 			html, body {
 				margin: 0; padding: 0;
-				display: block;
-
 				font: 12px/16px Helmet, Freesans, sans-serif;
 			}
 
@@ -168,7 +166,9 @@
 				$.getJSON(
 					"https://api.github.com/repos/ushahidi/Badges/git/blobs/" + sha + "?callback=?",
 					function(badge) {
-						div.append("<img id=\"badge-" + sha + "\" src=\"data:image/png;base64," + badge.data.content + "\" class=\"badge\" />");
+						if(badge.data.encoding == "base64") {
+							div.append("<img id=\"badge-" + sha + "\" src=\"data:image/png;base64," + badge.data.content + "\" class=\"badge\" alt=\"" + filename + "\" />");
+						}
 				});
 			}
 
