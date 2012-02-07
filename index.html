@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>GitHub API Test</title>
+		<title>Badges by Ushahidi</title>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<link href="http://fonts.googleapis.com/css?family=Asap" rel="stylesheet" type="text/css">
 
@@ -26,6 +26,10 @@
 				font-weight: normal;
 				font-family: 'Asap', sans-serif;
 				z-index: 999; position: relative;
+			}
+
+			p {
+				font-size:14px;
 			}
 
 				#subtext {
@@ -82,6 +86,21 @@
 				margin: 0 6px 6px 0;
 			}
 
+			div .helper {
+				margin-left:25px;
+			}
+
+			ul {
+				font-size:14px;
+			}
+
+			#footer {
+				margin:auto;
+				width:500px;
+				text-align:center;
+				padding-bottom:120px;
+			}
+
 		</style>
 
 	</head>
@@ -93,16 +112,37 @@
 			<p id="subtext">by <a href="http://www.ushahidi.com"><img src="logo_ushahidi-primary_64x64.png" /></a></p>
 
 			<div class="description">
-				<p>Sirloin kielbasa shank, venison jerky bacon swine pork chop. Meatloaf brisket pork pastrami jerky. Swine tail pork loin jerky, corned beef hamburger tri-tip. Filet mignon shankle shank pork loin pastrami short ribs spare ribs. Short ribs rump tongue prosciutto bresaola, strip steak fatback. Frankfurter t-bone tail salami filet mignon rump.</p>
+				<p><strong>Ushahidi's Open Source Badges</strong> initiative makes it easy for developers to find badge image resources to include in their projects. Currently hosting <strong><span id="badgecount"></span></strong> images in a variety of categories, these badges can be used in <a href="http://ushahidi.com">Ushahidi</a> or <a href="https://crowdmap.com">Crowdmap</a> deployments or other services.</p>
 
-				<p>Meatball filet mignon beef ribs capicola pork loin. Beef ribs shank meatball swine shoulder, chicken fatback short loin bacon t-bone filet mignon salami brisket. Ham leberkase beef rump, boudin beef ribs strip steak prosciutto. Sirloin salami chicken, short loin capicola turkey fatback beef ribs.</p>
+				<p><strong>We need your help!</strong> This collection of open source badges belongs to the community. If you're a designer, developer or just interested in all things badgy, you can support this initiative. Your efforts will impact a multitude of projects, ranging from projects that crowdsource information in crisis and disaster situations to projects that reward people for submitting delicious pictures of cheeseburgers.</p>
+
+				<p>We have badges broken down into individual "badge packs". All of the badge packs can be seen below. For example, the <em>Locations</em> pack is a simple grouping of badges that follow a certain theme. The Ushahidi pack is a group of generic badges that the Ushahidi team has put together. So, how exactly can you help?</p>
+
+				<p class="helper"><strong>Designers:</strong> You can have a major impact by focusing your efforts on creating or extending badge packs. To create new badge packs, you simply need to <a href="https://github.com/ushahidi/Badges">fork the repository</a>, and make your changes following the simple folder structure:</p>
+				<ul class="helper">
+					<li>BadgePackName/*.png</li>
+					<li>BadgePackName/assets/*.ai (or *.psd, etc)</li>
+				</ul>
+				<p class="helper">PNG files of your badges must be 80x80 pixels and the design files should be included in the assets directory. Once you are ready, submit a pull request so we can include it in the repository. It's that simple!</p>
+
+				<p class="helper"><strong>Developers:</strong> You have an important role to play, and that's including badges on your project. We would love to see the innovative ways you can put these badges to use. In the very near future, we will be incorporating badge tracking into the <a href="https://github.com/ushahidi/riverid">RiverID</a> user authentication platform so users can carry their badges with them. Other similar projects are highly encouraged. If you want to discuss ideas, <a href="https://github.com/ushahidi/Badges/issues">post an issue</a> and we can discuss it!</p>
+
+				<p class="helper"><strong>Badge Aficionados:</strong> Without your support, the designers wouldn't have any ideas to bring to life and the developers wouldn't have any interesting badges to use on their platforms. You can <a href="https://github.com/ushahidi/Badges/issues">submit badge ideas as issues</a> and designers will be able to pick them up and run with them.</p>
+
+				<p><strong>The license</strong> the badges fall under is a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a> which allows you to share, copy, distribute, remix and adapt the images. You are free to use them in commercial work, as well. Attribution is highly encouraged but not entirely necessary. You can <a href="https://github.com/ushahidi/Badges/blob/master/LICENSE">check out the license</a> that we have bundled in the repository.</p>
 			</div>
+
+		</div>
+
+		<div id="footer">
+			<a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
 		</div>
 
 		<script type="text/javascript">
 
 			var sha = 0;
 			var packs = [];
+			var count = 0; // Counts the number of badges
 
 			$(function() {
 				$.getJSON(
@@ -167,6 +207,8 @@
 					"https://api.github.com/repos/ushahidi/Badges/git/blobs/" + sha + "?callback=?",
 					function(badge) {
 						if(badge.data.encoding == "base64") {
+							count = count + 1;
+							$('#badgecount').text(count);
 							div.append("<img id=\"badge-" + sha + "\" src=\"data:image/png;base64," + badge.data.content + "\" class=\"badge\" alt=\"" + filename + "\" />");
 						}
 				});
