@@ -1,0 +1,12 @@
+# Badges by Ushahidi
+
+You can read more about this project at http://badges.ushahidi.com.
+
+Files are arranged in "badge packs" which are the directories in the root directory. The name of the pack is the name of the directory. Badge images are PNGs with the dimensions of 80x80.
+
+Information about contributing can be found on http://badges.ushahidi.com.
+
+Current managers of the repository are:
+
+  * Brian Herbert - brian@ushahidi.com
+  * Brandon Rosage - brandon@ushahidi.com
